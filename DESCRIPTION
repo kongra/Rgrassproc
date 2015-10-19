@@ -1,0 +1,12 @@
+Package: Rgrassproc
+Type: Package
+Title: A Grassberger-Procaccio algorithm implementation in R/C++
+Version: 0.1
+Date: 2015-10-19
+Author: Konrad Grzanek
+Maintainer: Konrad Grzanek <kongra@gmail.com>
+Description: A Grassberger-Procaccio algorithm implementation in R/C++
+License: BSD
+LazyData: TRUE
+LinkingTo: Rcpp
+Imports: Rcpp
