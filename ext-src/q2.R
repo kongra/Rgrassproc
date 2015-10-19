@@ -1,42 +1,33 @@
 ## Copyright (c) Konrad Grzanek
 ## Created 2015-10-19
 
-# library(data.table)
-# library(ggplot2)
-# library(Rcpp)
-#
-# DATAFILE <- "input.csv"
-#
-# readData <- function() {
-#   dt <- fread(DATAFILE)
-#   x  <- dt[[1]]
-#   as.numeric(gsub(",", ".", x))
-# } aaa
-#
-# normalizeTo1 <- function(x) {
-#   max.x <- max(x)
-#   if (max.x > 1) x <- x / max.x
-#   x
-# }
+library(data.table)
+library(ggplot2)
+library(Rgrassproc)
 
-# loglog <- function(x, k = 100, from = -4, to = 0) {
-#   logy <- seq(from = from, to = to, length.out = k)
-#   y    <- exp(logy)
-#   f    <- numeric(k)
-#   for (i in seq_along(f)) f[i] <- FY2(x, y[i])
-#
-#   data.table(LogY = logy, LogFY = log(f))
-# }
-#
-# ## WCZYTANIE DANYCH
-# x <- normalizeTo1(readData())
-#
-# ## WERSJA NA 1 RDZEŃ
-# system.time(ll <- loglog(x, k = 100, from = -12, to = 0))
-# ## OK. 25.5 s na moim 1 rdzeniu AMD E-450
-#
-# ## ggplot(ll, aes(LogY, LogFY)) + geom_point()
-# ## ggsave("Fig1.pdf")
+DATAFILE <- "input.csv"
+
+readData <- function() {
+  dt <- fread(DATAFILE)
+  x  <- dt[[1]]
+  as.numeric(gsub(",", ".", x))
+}
+
+normalizeTo1 <- function(x) {
+  max.x <- max(x)
+  if (max.x > 1) x <- x / max.x
+  x
+}
+
+## WCZYTANIE DANYCH
+x <- normalizeTo1(readData())
+
+## WERSJA NA 1 RDZEŃ
+system.time(ll <- rCr(x, k = 100, from = -12, to = 0))
+## OK. 25.5 s na moim 1 rdzeniu AMD E-450
+
+## ggplot(ll, aes(LogY, LogFY)) + geom_point()
+## ggsave("Fig1.pdf")
 #
 # ## WYZNACZAMY WSPÓŁCZYNNIK NACHYLENIA NA CZĘŚCI LINIOWEJ, TUTAJ TO
 # ## JEST PRZEDZIAŁ [-10, -2.5]

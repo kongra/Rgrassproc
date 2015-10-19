@@ -14,7 +14,7 @@ rCr <- function(x, k = 100, from = -4, to = 0) {
   logr <- seq(from = from, to = to, length.out = k)
   r    <- exp(logr)
   Cr   <- numeric(k)
-  for (i in seq_along(f)) Cr[i] <- corrSum(x, r[i])
+  for (i in seq_along(Cr)) Cr[i] <- corrSum(x, r[i])
 
   data.table(log.r = logr, log.Cr = log(Cr))
 }
