@@ -4,7 +4,7 @@
 library(data.table)
 library(ggplot2)
 library(Rgrassproc)
-library(snow)
+library(parallel)
 
 DATAFILE <- "input.csv"
 
@@ -61,8 +61,9 @@ rCrPar <- function(cl, clustSize, x, k = 100, from = -4, to = 0) {
 ## CLUST_SIZE <- 2
 ## cl <- makeMPIcluster(CLUST_SIZE)
 ## cl <- makeCluster(2, type = "MPI")
+## cl <- makeCluster(c("localhost", "localhost"), type = "SOCK")
 
-cl <- makeCluster(c("localhost", "localhost"), type = "SOCK")
+cl <- makeCluster(2, type = "FORK")
 clusterEvalQ(cl,{
   library(Rgrassproc)
 })
