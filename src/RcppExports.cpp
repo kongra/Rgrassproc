@@ -17,3 +17,15 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// corrPartialCounts
+IntegerVector corrPartialCounts(NumericVector x, double r);
+RcppExport SEXP Rgrassproc_corrPartialCounts(SEXP xSEXP, SEXP rSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type r(rSEXP);
+    __result = Rcpp::wrap(corrPartialCounts(x, r));
+    return __result;
+END_RCPP
+}

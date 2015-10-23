@@ -10,3 +10,10 @@ corrSum <- function(x, r) {
     .Call('Rgrassproc_corrSum', PACKAGE = 'Rgrassproc', x, r)
 }
 
+#' An innter loop of a generalized correlation sum. For internal use only.
+#' No NAs assumed.
+#' @export
+corrPartialCounts <- function(x, r) {
+    .Call('Rgrassproc_corrPartialCounts', PACKAGE = 'Rgrassproc', x, r)
+}
+
