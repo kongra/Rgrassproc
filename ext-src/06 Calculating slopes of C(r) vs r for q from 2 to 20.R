@@ -38,7 +38,7 @@ rCr.slopes <- function(dt) {
   for (i in seq_along(intervals)) {
     q <- i + 1
     s <- rCr.slope(dt, q, intervals[[i]])
-    set(results, i = i, j = "q",          value = q)
+    set(results, i = i, j = "q",         value = q)
     set(results, i = i, j = "rCr.slope", value = s)
   }
   results
@@ -68,23 +68,23 @@ dt <- rCr.slopes(fread("output.csv"))
 
 cor(dt$q, dt$rCr.slope) # 0.9999474 LINEAR DEPENDENCY OF rCr.slope and q
 
-## rCr.slope = 0.745567 + 1.171775 * q
-m <- lm(q ~ rCr.slope, data = dt)
+## rCr.slope = -0.635284 + 0.853317 * q
+m <- lm(rCr.slope ~ q, data = dt)
 summary(m)
 ## Call:
-## lm(formula = q ~ rCr.slope, data = dt)
+## lm(formula = rCr.slope ~ q, data = dt)
 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max
-## -0.06236 -0.04847 -0.01545  0.03829  0.13186
+## -0.11334 -0.03268  0.01354  0.04123  0.05313
 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept) 0.745567   0.028918   25.78 4.55e-15 ***
-## rCr.slope   1.171775   0.002915  402.01  < 2e-16 ***
+##              Estimate Std. Error t value Pr(>|t|)
+## (Intercept) -0.635284   0.026083  -24.36 1.17e-14 ***
+## q            0.853317   0.002123  402.01  < 2e-16 ***
 ## ---
 ## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-## Residual standard error: 0.05939 on 17 degrees of freedom
+## Residual standard error: 0.05068 on 17 degrees of freedom
 ## Multiple R-squared:  0.9999,	Adjusted R-squared:  0.9999
 ## F-statistic: 1.616e+05 on 1 and 17 DF,  p-value: < 2.2e-16
