@@ -26,10 +26,10 @@ rCr <- function(x, k = 100, from = -4, to = 0) {
 corrSumG <- function(x, r, q, precBits = 128) {
   N  <- length(x)
   N1 <- mpfr(N, precBits)
-  m  <- 1.0 / (N1 * ((N1 - 1) ^ (q - 1)))
+  m  <- N1 * ((N1 - 1) ^ (q - 1))
 
   counts <- corrPartialCounts(x, r)
-  m * sum(mpfr(counts, precBits) ^ (q - 1))
+  1.0 / m * sum(mpfr(counts, precBits) ^ (q - 1))
 }
 
 ##' Generalized version of \code{rCr}. For variable values of q.
