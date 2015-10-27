@@ -20,9 +20,9 @@ rCr <- function(x, k = 100, from = -4, to = 0) {
   data.table(log.r = logr, log.Cr = log(Cr))
 }
 
-#' Returns a value of a generalized correlation sum with an additional q
-#' parameter. Uses Rmpfr with precBits. Assumes no NAs in x.
-#' @export
+##' Returns a value of a generalized correlation sum with an additional q
+##' parameter. Uses Rmpfr with precBits. Assumes no NAs in x.
+##' @export
 corrSumG <- function(x, r, q, precBits = 128) {
   N  <- length(x)
   N1 <- mpfr(N, precBits)
